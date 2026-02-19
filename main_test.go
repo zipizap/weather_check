@@ -59,13 +59,13 @@ func TestRun_PrintsExpectedSignificantChanges(t *testing.T) {
 	if !strings.Contains(output, "**Monday Weather changes**") {
 		t.Fatalf("expected weekday title in output, got: %s", output)
 	}
-	if !strings.Contains(output, "- +7º max temp (27ºC)") {
+	if !strings.Contains(output, ". +7º max temp (27ºC)") {
 		t.Fatalf("expected max temperature change line in output, got: %s", output)
 	}
-	if !strings.Contains(output, "- -5º min temp (10ºC)") {
+	if !strings.Contains(output, ". -5º min temp (10ºC)") {
 		t.Fatalf("expected min temperature change line in output, got: %s", output)
 	}
-	if !strings.Contains(output, "- 8:00 rain 2mm (40%)") || !strings.Contains(output, "- 9:00 rain 3mm (35%)") {
+	if !strings.Contains(output, ". 8:00 rain 2mm (40%)") || !strings.Contains(output, ". 9:00 rain 3mm (35%)") {
 		t.Fatalf("expected significant rain lines in output, got: %s", output)
 	}
 }

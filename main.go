@@ -481,13 +481,13 @@ func renderReport(report Report) string {
 	lines = append(lines, fmt.Sprintf("**%s Weather changes**", report.DayName))
 
 	if report.HasMaxTempChange {
-		lines = append(lines, fmt.Sprintf("- %s%sº max temp (%sºC)", signedNumber(report.MaxTempChange), degreeNumber(report.MaxTempChange), degreeNumber(report.MaxTempTarget)))
+		lines = append(lines, fmt.Sprintf(". %s%sº max temp (%sºC)", signedNumber(report.MaxTempChange), degreeNumber(report.MaxTempChange), degreeNumber(report.MaxTempTarget)))
 	}
 	if report.HasMinTempChange {
-		lines = append(lines, fmt.Sprintf("- %s%sº min temp (%sºC)", signedNumber(report.MinTempChange), degreeNumber(report.MinTempChange), degreeNumber(report.MinTempTarget)))
+		lines = append(lines, fmt.Sprintf(". %s%sº min temp (%sºC)", signedNumber(report.MinTempChange), degreeNumber(report.MinTempChange), degreeNumber(report.MinTempTarget)))
 	}
 	for _, rain := range report.SignificantRains {
-		lines = append(lines, fmt.Sprintf("- %d:00 rain %smm (%s%%)", rain.Time.Hour(), compactNumber(rain.PrecipitationMM), compactNumber(rain.PrecipitationProb)))
+		lines = append(lines, fmt.Sprintf(". %d:00 rain %smm (%s%%)", rain.Time.Hour(), compactNumber(rain.PrecipitationMM), compactNumber(rain.PrecipitationProb)))
 	}
 
 	return strings.Join(lines, "\n")
@@ -497,11 +497,11 @@ func signedNumber(value float64) string {
 	if value >= 0 {
 		return "+"
 	}
-	return ""
+	return "-"
 }
 
 func degreeNumber(value float64) string {
-	return compactNumber(value)
+	return compactNumber(math.Abs(value))
 }
 
 func compactNumber(value float64) string {
